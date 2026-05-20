@@ -44,6 +44,28 @@ export class ApiService {
       )
   }
 
+    patch(endPointUrl:string, postParams:{}={}){
+  var postData = this.generarHttpParamsDesdeObjeto(postParams);
+  return this.httpClient.patch<any>(
+    this.settingsService.API_URL + endPointUrl,
+    postData,
+    { headers: this.headers,
+      responseType : 'json',
+      reportProgress: false,
+      withCredentials: true,
+    }
+    )
+  }
+  delete(endPointUrl:string){
+  return this.httpClient.delete<any>(
+    this.settingsService.API_URL + endPointUrl,
+    { headers: this.headers,
+      responseType : 'json',
+      reportProgress: false,
+      withCredentials: true,
+      }
+    )
+  }
   private generarHttpParamsDesdeObjeto(data: { [key: string]: string | number }): string {
     /**
      * Gets a string of HttpParams from an object.
