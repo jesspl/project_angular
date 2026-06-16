@@ -1,3 +1,49 @@
-.width-100{
-    width: 100%;
+// .width-100{
+//     width: 100%;
+// }
+
+/* Menú desktop — visible en pantallas grandes */
+.menu-desktop {
+  display: flex;
+}
+
+/* Botón hamburguesa — oculto en pantallas grandes */
+.menu-mobile {
+  display: none;
+  align-items: center;
+  padding: 0 10px;
+  background-color: #d4c4b3;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #d4c4b3;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  padding-top: 60px;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+}
+
+.sidebar button {
+  width: 100%;
+  text-align: left;
+  padding: 10px 20px;
+}
+
+/* En pantallas pequeñas (menos de 768px) */
+@media only screen and (max-width: 768px) {
+  .menu-desktop {
+    display: none;
+  }
+  .menu-mobile {
+    display: flex;
+  }
 }

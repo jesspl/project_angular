@@ -160,9 +160,10 @@ export class CallesFormComponent implements OnInit {
   }
 
   useGeomInUrl() {
-  this.activatedRoute.queryParamMap.subscribe(params => {
-    this.geom.setValue(params.get("geom"));
-  });
-}
-}
+    this.activatedRoute.queryParamMap.subscribe(params => {
+      this.geom.setValue(params.get("geom"));
+    });
+  }
+
+  }
 
