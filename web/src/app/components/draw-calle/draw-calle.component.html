@@ -1,0 +1,13 @@
+<!-- <p>draw-calle works!</p> -->
+
+<!-- un boton que cambia de icono segun drawMode -->
+@if (drawMode) {
+    <button mat-button (click)="toggleDrawMode()">
+        <mat-icon matTooltip="Stop drawing calle">clear</mat-icon>
+    </button>
+} @else {
+    <button mat-button (click)="toggleDrawMode()">
+        <!--  icono 'timeline' para representar una calle (LineString) -->
+        <mat-icon matTooltip="Start drawing calle">timeline</mat-icon>
+    </button>
+}

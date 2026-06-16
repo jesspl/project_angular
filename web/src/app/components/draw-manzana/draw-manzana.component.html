@@ -1,0 +1,11 @@
+<!-- <p>draw-manzana works!</p> -->
+@if (drawMode) {
+    <button mat-button (click)="toggleDrawMode()">
+        <mat-icon matTooltip="Stop drawing manzana">clear</mat-icon>
+    </button>
+} @else {
+    <button mat-button (click)="toggleDrawMode()">
+        <!--  icono 'crop_square' para representar una manzana (Polygon) -->
+        <mat-icon matTooltip="Start drawing manzana">crop_square</mat-icon>
+    </button>
+}

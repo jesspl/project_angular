@@ -10,20 +10,49 @@
     width: 100%;
     height: calc(100vh - 150px);
 }
-#draw-building {
+
+#map {
+    position: relative;
+    background-color: #add8e6;
+    z-index: 0;
+    overflow: hidden;
+    width: 100%;
+    height: calc(100vh - 150px);
+}
+#draw-calle {
     position: absolute;
     left: 20px;
     top: 20px;
     z-index: 1;
-    border-radius: 5px;
-    opacity: 1;
 }
-
-#draw-flower {
+#draw-semaforo {
     position: absolute;
     left: 20px;
     top: 50px;
     z-index: 1;
-    border-radius: 5px;
-    opacity: 1;
 }
+#draw-manzana {
+    position: absolute;
+    left: 20px;
+    top: 80px;
+    z-index: 1;
+}
+
+// #draw-building {
+//     position: absolute;
+//     left: 20px;
+//     top: 20px;
+//     z-index: 1;
+//     border-radius: 5px;
+//     opacity: 1;
+// }
+
+// #draw-flower {
+//     position: absolute;
+//     left: 20px;
+//     top: 50px;
+//     z-index: 1;
+//     border-radius: 5px;
+//     opacity: 1;
+// }
+

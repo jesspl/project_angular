@@ -1,0 +1,11 @@
+<!-- <p>draw-semaforo works!</p> -->
+@if (drawMode) {
+    <button mat-button (click)="toggleDrawMode()">
+        <mat-icon matTooltip="Stop drawing semaforo">clear</mat-icon>
+    </button>
+} @else {
+    <button mat-button (click)="toggleDrawMode()">
+        <!-- icono 'traffic' para representar un semaforo (Point) -->
+        <mat-icon matTooltip="Start drawing semaforo">traffic</mat-icon>
+    </button>
+}

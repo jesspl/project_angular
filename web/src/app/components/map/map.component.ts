@@ -4,13 +4,18 @@ import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild, ElementRef} fro
 
 //My imports
 import { MapService } from '../../services/map.service';
-import { DrawBuildingComponent } from '../draw-building/draw-building.component';
-import { DrawFlowerComponent } from '../draw-flower/draw-flower.component';
+// import { DrawBuildingComponent } from '../draw-building/draw-building.component';
+// import { DrawFlowerComponent } from '../draw-flower/draw-flower.component';
+
+//los imports para la calle,semaforo y manzanas
+import { DrawCalleComponent } from '../draw-calle/draw-calle.component';
+import { DrawSemaforoComponent } from '../draw-semaforo/draw-semaforo.component';
+import { DrawManzanaComponent } from '../draw-manzana/draw-manzana.component';
 
 @Component({
   selector: 'app-map',
   standalone: true,
-  imports: [DrawBuildingComponent, DrawFlowerComponent],
+  imports: [DrawCalleComponent, DrawSemaforoComponent, DrawManzanaComponent], // se realiza la importacion
   templateUrl: './map.component.html',
   styleUrl: './map.component.scss'
 })
