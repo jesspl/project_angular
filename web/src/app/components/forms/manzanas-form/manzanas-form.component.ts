@@ -10,7 +10,6 @@
 // export class ManzanasFormComponent {
 
 // }
-
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -21,6 +20,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../../services/api.service';
 import { ManzanaModel } from '../../../models/manzana.model';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-manzanas-form',
@@ -32,6 +32,7 @@ import { ManzanaModel } from '../../../models/manzana.model';
 export class ManzanasFormComponent implements OnInit {
   l: ManzanaModel[] = [];
   serverMessage = '';
+  geomInUrl = false;
 
   id = new FormControl('');
   nombre = new FormControl('', [Validators.required]);
@@ -47,10 +48,17 @@ export class ManzanasFormComponent implements OnInit {
     geom: this.geom
   });
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private activatedRoute: ActivatedRoute, public router: Router) {}
 
   ngOnInit(): void {
     this.selectAll();
+    this.activatedRoute.queryParamMap.subscribe(params => {
+      var geom = params.get("geom");
+      if (geom) {
+        this.geom.setValue(geom);
+        this.geomInUrl = true;
+      }
+    });
   }
 
   insert() {
@@ -141,5 +149,11 @@ export class ManzanasFormComponent implements OnInit {
     this.area.setValue(data.area.toString());
     this.descripcion.setValue(data.descripcion);
     this.geom.setValue(data.geom_wkt);
+  }
+
+  useGeomInUrl() {
+    this.activatedRoute.queryParamMap.subscribe(params => {
+      this.geom.setValue(params.get("geom"));
+    });
   }
 }

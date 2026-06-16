@@ -9,6 +9,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../../services/api.service';
 import { ServerAnswerModel } from '../../../models/server-answer.model';
 import { CalleModel } from '../../../models/calle.model';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-calles-form',
@@ -20,6 +21,7 @@ import { CalleModel } from '../../../models/calle.model';
 export class CallesFormComponent implements OnInit {
   l: CalleModel[] = [];
   serverMessage = '';
+  geomInUrl = false; 
 
   id = new FormControl('');
   nombre = new FormControl('', [Validators.required]);
@@ -35,12 +37,24 @@ export class CallesFormComponent implements OnInit {
     geom: this.geom
   });
 
-  constructor(private apiService: ApiService) {}
+  // constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private activatedRoute: ActivatedRoute, public router: Router) {}
+
+  // ngOnInit(): void {
+  //   this.selectAll();
+  // }
 
   ngOnInit(): void {
-    this.selectAll();
+  this.selectAll();
+  this.activatedRoute.queryParamMap.subscribe(params => {
+    var geom = params.get("geom");
+    if (geom) {
+      this.geom.setValue(geom);
+      this.geomInUrl = true;
+    }
+  });
   }
-
+  
   insert() {
     this.serverMessage = '';
     this.apiService.post('p1/calles/', this.controlsGroup.value).subscribe({
@@ -144,4 +158,11 @@ export class CallesFormComponent implements OnInit {
     this.estado.setValue(data.estado);
     this.geom.setValue(data.geom_wkt);
   }
+
+  useGeomInUrl() {
+  this.activatedRoute.queryParamMap.subscribe(params => {
+    this.geom.setValue(params.get("geom"));
+  });
 }
+}
+

@@ -31,6 +31,9 @@
             <button mat-button matTooltip="Select" (click)="select()">Select</button>
             <button mat-button matTooltip="Select all" (click)="selectAll()">Select all</button>
             <button mat-button matTooltip="Clear form" (click)="clearForm()">Clear form</button>
+            @if (geomInUrl){
+            <button mat-button (click)="useGeomInUrl()">Use geom in url</button>
+            }
             <br>
             <p>{{serverMessage}}</p>
         </form>

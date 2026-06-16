@@ -21,6 +21,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../../services/api.service';
 import { SemaforoModel } from '../../../models/semaforo.model';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-semaforos-form',
@@ -32,6 +33,7 @@ import { SemaforoModel } from '../../../models/semaforo.model';
 export class SemaforosFormComponent implements OnInit {
   l: SemaforoModel[] = [];
   serverMessage = '';
+  geomInUrl = false;
 
   id = new FormControl('');
   nombre = new FormControl('', [Validators.required]);
@@ -47,10 +49,17 @@ export class SemaforosFormComponent implements OnInit {
     geom: this.geom
   });
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private activatedRoute: ActivatedRoute, public router: Router) {}
 
   ngOnInit(): void {
     this.selectAll();
+    this.activatedRoute.queryParamMap.subscribe(params => {
+      var geom = params.get("geom");
+      if (geom) {
+        this.geom.setValue(geom);
+        this.geomInUrl = true;
+      }
+    });
   }
 
   insert() {
@@ -141,5 +150,11 @@ export class SemaforosFormComponent implements OnInit {
     this.estado.setValue(data.estado);
     this.tipo.setValue(data.tipo);
     this.geom.setValue(data.geom_wkt);
+  }
+
+  useGeomInUrl() {
+    this.activatedRoute.queryParamMap.subscribe(params => {
+      this.geom.setValue(params.get("geom"));
+    });
   }
 }
